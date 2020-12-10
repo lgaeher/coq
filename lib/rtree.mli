@@ -13,6 +13,14 @@
    is avoided by the lift operator (see example below) *)
 type 'a t
 
+(* match on a tree *)
+val match_tree :
+  (int * int -> 'b)             (* Param *)
+  -> ('a * ('a t array) -> 'b)  (* Node *)
+  -> (int * ('a t array) -> 'b) (* Rec *)
+  -> 'a t
+  -> 'b
+
 (** Building trees *)
 
 (** build a node given a label and the vector of sons *)

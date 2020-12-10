@@ -25,6 +25,13 @@ type 'a t =
   | Node of 'a * 'a t array
   | Rec of int * 'a t array
 
+(* match principle *)
+let match_tree cParam cNode cRec t =
+  match t with
+  | Param (i, j) -> cParam (i, j)
+  | Node (l, children) -> cNode (l, children)
+  | Rec (i, children) -> cRec (i, children)
+
 (* Building trees *)
 let mk_rec_calls i = Array.init i (fun j -> Param(0,j))
 let mk_node lab sons = Node (lab, sons)
